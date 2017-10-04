@@ -1,24 +1,24 @@
 package com.rollingstone.service;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import javax.validation.constraints.NotNull;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 
 /*
 * demonstrates how service-specific properties can be injected
 */
-@ConfigurationProperties(prefix = "todo.service", ignoreUnknownFields = false)
+@ConfigurationProperties(prefix = "customer.service", ignoreUnknownFields = false)
 @Component
 public class ServiceProperties {
 	
-	//TODO Change Name
 	
 	@NotNull // you can also create configurationPropertiesValidator
-	private String name = "Todo Service";
+	private String name = "Customer Service";
 	
-	//TODO Change Desc
+	//Customer Change Desc
 	@NotNull // you can also create configurationPropertiesValidator
-	private String description = "Todo Service Description";
+	private String description = "Customer Service Description";
 
 	public String getName() {
 		return this.name;

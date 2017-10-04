@@ -15,65 +15,64 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rollingstone.domain.Todo;
-import com.rollingstone.domain.Todo;
+import com.rollingstone.domain.Customer;
 import com.rollingstone.exception.HTTP404Exception;
-import com.rollingstone.service.TodoService;
-import com.rollingstone.service.TodoServiceEvent;
+import com.rollingstone.service.CustomerService;
+import com.rollingstone.service.CustomerServiceEvent;
 
 @RestController
-@RequestMapping(value = "/rsmortgage-TODOservice/v1/TODO")
-public class TODOController extends AbstractRestHandler {
+@RequestMapping(value = "/rsmortgage-Customerservice/v1/Customer")
+public class CustomerController extends AbstractRestHandler {
 
 	/*
 	 * This is the Public Facing API. Change this to your specific public facing REST API
 	 */
 	@Autowired
-	private TodoService todoService;
+	private CustomerService CustomerService;
 
 	@RequestMapping(value = "", method = RequestMethod.POST, consumes = { "application/json",
 			"application/xml" }, produces = { "application/json", "application/xml" })
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createTODO(@RequestBody Todo todo, HttpServletRequest request, HttpServletResponse response) {
-		Todo createdTODO = this.todoService.createTodo(todo);
-		eventPublisher.publishEvent(new TodoServiceEvent(this, "TODOCreated", createdTODO));
-		response.setHeader("Location", request.getRequestURL().append("/").append(createdTODO.getId()).toString());
+	public void createCustomer(@RequestBody Customer Customer, HttpServletRequest request, HttpServletResponse response) {
+		Customer createdCustomer = this.CustomerService.createCustomer(Customer);
+		eventPublisher.publishEvent(new CustomerServiceEvent(this, "CustomerCreated", createdCustomer));
+		response.setHeader("Location", request.getRequestURL().append("/").append(createdCustomer.getId()).toString());
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = { "application/json", "application/xml" })
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody Page<Todo> getAllTodo(
+	public @ResponseBody Page<Customer> getAllCustomer(
 			@RequestParam(value = "page", required = true, defaultValue = DEFAULT_PAGE_NUM) Integer page,
 			@RequestParam(value = "size", required = true, defaultValue = DEFAULT_PAGE_SIZE) Integer size,
 			HttpServletRequest request, HttpServletResponse response) {
-		return this.todoService.getAlltodos(page, size);
+		return this.CustomerService.getAllCustomers(page, size);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = { "application/json", "application/xml" })
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody Todo getTodo(@PathVariable("id") Long id, HttpServletRequest request,
+	public @ResponseBody Customer getCustomer(@PathVariable("id") Long id, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		Todo Todo = this.todoService.getTodo(id);
-		checkResourceFound(Todo);
-		return Todo;
+		Customer Customer = this.CustomerService.getCustomer(id);
+		checkResourceFound(Customer);
+		return Customer;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = { "application/json",
 			"application/xml" }, produces = { "application/json", "application/xml" })
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void updateTodo(@PathVariable("id") Long id, @RequestBody Todo Todo, HttpServletRequest request,
+	public void updateCustomer(@PathVariable("id") Long id, @RequestBody Customer Customer, HttpServletRequest request,
 			HttpServletResponse response) {
-		checkResourceFound(this.todoService.getTodo(id));
-		if (id != Todo.getId())
+		checkResourceFound(this.CustomerService.getCustomer(id));
+		if (id != Customer.getId())
 			throw new HTTP404Exception("ID doesn't match!");
-		this.todoService.updateTodo(Todo);
+		this.CustomerService.updateCustomer(Customer);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = { "application/json",
 			"application/xml" })
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteTodo(@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) {
-		checkResourceFound(this.todoService.getTodo(id));
-		this.todoService.deleteTodo(id);
+	public void deleteCustomer(@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) {
+		checkResourceFound(this.CustomerService.getCustomer(id));
+		this.CustomerService.deleteCustomer(id);
 	}
 }

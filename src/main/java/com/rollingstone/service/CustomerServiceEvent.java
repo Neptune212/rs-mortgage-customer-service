@@ -1,34 +1,34 @@
 package com.rollingstone.service;
 
 import org.springframework.context.ApplicationEvent;
-import com.rollingstone.domain.Todo;
+import com.rollingstone.domain.Customer;
 
 /**
  * This is an optional class used in publishing application events. This can be
  * used to inject events into the Spring Boot audit management endpoint.
  */
 
-//TODO Replace All Todos with your Domains Object
-public class TodoServiceEvent extends ApplicationEvent {
-	Todo eventTodo;
+//Customer Replace All Customers with your Domains Object
+public class CustomerServiceEvent extends ApplicationEvent {
+	Customer eventCustomer;
 	String eventType;
 
-	public TodoServiceEvent(Object source, String eventType, Todo todo) {
+	public CustomerServiceEvent(Object source, String eventType, Customer Customer) {
 		super(source);
 		this.eventType = eventType;
-		this.eventTodo = todo;
+		this.eventCustomer = Customer;
 	}
 
 	public String toString() {
-		return "My TodoService Event";
+		return "My CustomerService Event";
 	}
 
-	public Todo getEventTodo() {
-		return eventTodo;
+	public Customer getEventCustomer() {
+		return eventCustomer;
 	}
 
-	public void setEventTodo(Todo eventTodo) {
-		this.eventTodo = eventTodo;
+	public void setEventCustomer(Customer eventCustomer) {
+		this.eventCustomer = eventCustomer;
 	}
 
 	public String getEventType() {

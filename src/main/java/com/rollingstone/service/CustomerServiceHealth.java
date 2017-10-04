@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * into the Spring Boot health management endpoint.
  */
 @Component
-public class TodoServiceHealth implements HealthIndicator {
+public class CustomerServiceHealth implements HealthIndicator {
 	
 	@Autowired
 	private ServiceProperties configuration;

@@ -4,17 +4,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.rollingstone</groupId>
-	<artifactId>udemy-rsmortgage-microservice-spring-boot-template</artifactId>
+	<artifactId>rs-mortgage-customer-service</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>udemy-rsmortgage-microservice-spring-boot-template</name>
+	<name>rs-mortgage-customer-service</name>
 	<description>Spring Boot Starter Template for a Database Backed Microservice</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.2.RELEASE</version>
+		<version>1.5.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -41,7 +41,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
+		
 		<!-- spring-test, hamcrest, ... -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -133,6 +133,11 @@
 
 	<!-- End of Spring Cloud Microservice Dependencies	-->
 
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-configuration-processor</artifactId>
+		<optional>true</optional>
+	</dependency>
 	</dependencies>
 
 	<build>
