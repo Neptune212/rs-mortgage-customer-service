@@ -39,7 +39,7 @@ management:
 
 #default project info followed by actual injected pom-specified values.
 project:
-  name: spring-boot-rest-example
+  name: rs-mortgage-customer-service
   version: 0.1
   description: boot-example default description
 info:

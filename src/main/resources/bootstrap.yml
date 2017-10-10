@@ -1,6 +1,6 @@
 spring:
   application:
-    name: rsmortgage-spring-cloud-customer
+    name: rs-mortgage-customer-service
   profiles:
     active:
       mysql
